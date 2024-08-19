@@ -1,217 +1,127 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
+# Importing necessary libraries
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 
+# Loading data from an Excel file
+df = pd.read_excel('your_file.xlsx')
 
-# In[2]:
-
-
-df = pd.read_excel('data1.xlsx')
-
-
-# In[3]:
-
-
+# Displaying the first 10 rows of the dataframe
 df.head(10)
 
-
-# In[4]:
-
-
+# Sorting the 'Total' column for ECDF calculation
 x = np.sort(df['Total'])
 
-
-# In[5]:
-
-
+# Finding the length of the sorted data
 len(x)
 
-
-# In[6]:
-
-
+# Calculating the cumulative distribution frequency
 y = np.arange(1, len(x)+1) / len(x)
 
+# Plotting the Empirical Cumulative Distribution Function (ECDF)
+plt.plot(x, y, marker='.')
+plt.xlabel('Percentage of Sale Price for Units Sold')
+plt.ylabel('Cumulative Distribution Frequency')
+plt.title('ECDF of Sale Price')
 
-# In[7]:
-
-
-graph = plt.plot(x, y, marker='.')
-graph = plt.xlabel('Percentage of Sale Price for Units Sold')
-graph = plt.ylabel('Cumulative Distribution Frequency')
-graph = plt.title('ECDF of Sale Price')
-
-
-# In[8]:
-
-
+# Calculating the correlation matrix for the dataframe
 df_cor = df.corr()
 df_cor
 
-
-# In[9]:
-
-
+# Extracting 'Total' as the independent variable (x) and 'UnitCost' as the dependent variable (y) for linear regression
 x = df['Total']
 y = df['UnitCost']
 
-ml_model =LinearRegression().fit(x,y)
-# In[14]:
+# Fitting a linear regression model
+ml_model = LinearRegression().fit(x, y)
 
-
+# Checking the model's score (R^2 value)
 ml_model.score()
 
-
-# In[18]:
-
-
+# Creating new data for a simple linear regression example
 x = np.array([12,3,4,5,6,7]).reshape((-1,1))
 y = np.array([4,7,9,10,11,20])
 
-
-# In[19]:
-
-
+# Displaying the independent variable data
 x
 
-
-# In[20]:
-
-
+# Initializing a new linear regression model
 reg = LinearRegression()
 
+# Fitting the model with the new data
+reg = LinearRegression().fit(x,y)
 
-# In[39]:
-
-
-reg  = LinearRegression().fit(x,y)
-
-
-# In[29]:
-
-
+# Calculating and printing the R^2 score of the model
 r_score = reg.score(x,y)
 print(r_score)
 
-
-# In[32]:
-
-
+# Extracting and printing the intercept of the linear regression model
 intercept = reg.intercept_
 print(intercept)
 
-
-# In[34]:
-
-
+# Extracting and displaying the coefficient (slope) of the model
 co_eff = reg.coef_
 co_eff
 
-
-# In[36]:
-
-
+# Making predictions using the model and displaying them
 prediction = reg.predict(x)
 print(prediction)
 
-
-# In[19]:
-
-
+# Importing additional libraries for further analysis
 import pandas as pd
 import scipy.stats as stats
 
-
-# In[4]:
-
-
-df = pd.read_csv('athlete_events.csv')
+# Loading a dataset from a CSV file
+df = pd.read_csv('your_file.csv')
 df.head()
 
-
-# In[35]:
-
-
+# Dropping rows with missing values
 df = df.dropna()
 
-
-# In[36]:
-
-
+# Checking for any remaining missing values
 df.isnull().sum()
 
-
-# In[25]:
-
-
+# Extracting weights of athletes from different teams
 us_team = df[df['Team']== 'US'].Weight
 netherlands_team = df[df['Team']== 'Netherlands'].Weight
 denmark_team = df[df['Team']== 'Denmark'].Weight
 
-
-# In[38]:
-
-
+# Performing one-way ANOVA to compare weights among the teams
 anova = stats.f_oneway(us_team, netherlands_team, denmark_team)
 print(anova)
 
-
-# In[39]:
-
-
-# Create arrays
+# Creating arrays for weights of athletes from specific countries
 France_athletes = df[df.Team == "France"].Weight
 US_athletes = df[df.Team == "United States"].Weight
 China_athletes = df[df.Team == "China"].Weight
 
-# Perform one-way ANOVA
+# Performing one-way ANOVA for these countries
 anova = stats.f_oneway(France_athletes, US_athletes, China_athletes)
 print(anova)
 
-
-# In[40]:
-
-
-
-# Importing library
+# Importing necessary library for another approach to ANOVA
 from scipy.stats import f_oneway
- 
-# Performance when each of the engine
-# oil is applied
+
+# Creating arrays for weights of athletes from specific countries
 performance1 = df[df.Team == "France"].Weight
 performance2 = df[df.Team == "United States"].Weight
 performance3 = df[df.Team == "China"].Weight
 
- 
-# Conduct the one-way ANOVA
+# Conducting the one-way ANOVA
 f_oneway(performance1, performance2, performance3)
 
-
-# In[59]:
-
-
+# Importing statsmodels for another statistical analysis approach
 import statsmodels.api as sm
 from statsmodels.formula.api import ols
 
-
-# In[66]:
-
-
+# Defining a formula for ANOVA with 'Weight' as the dependent variable and 'Sex' and 'Team' as independent variables
 formula = 'Weight ~ Sex + Team'
 model = ols(formula, data=df).fit()
+
+# Generating and displaying the ANOVA table
 aov_table = sm.stats.anova_lm(model, typ=2)
 print(aov_table)
-
-
-# In[ ]:
-
-
-
-
