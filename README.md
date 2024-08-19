@@ -6,7 +6,7 @@ Here’s a README file for your GitHub project based on the provided code:
 
 ## Overview
 
-**Stock Analysis** is a Python project designed for beginners to learn financial analysis and basic data science techniques. The project covers a range of topics from data manipulation and visualization to statistical analysis and machine learning. The code fetches and processes stock data and performs various analyses, including calculating and visualizing cumulative distribution functions, running linear regression models, and conducting ANOVA tests.
+**Anova Analysis** is a Python project designed for beginners to learn financial analysis and basic data science techniques. The project covers a range of topics from data manipulation to statistical analysis and machine learning. The code fetches and processes stock data and performs various analyses, including calculating and visualizing cumulative distribution functions, running linear regression models, and conducting ANOVA tests.
 
 ## Features
 
@@ -32,8 +32,8 @@ Here’s a README file for your GitHub project based on the provided code:
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/yourusername/stock-analysis.git
-   cd stock-analysis
+   git clone https://github.com/yourusername/anova_test.git
+   cd anova-analysis
    ```
 
 2. Install the required Python packages:
@@ -42,11 +42,11 @@ Here’s a README file for your GitHub project based on the provided code:
    pip install -r requirements.txt
    ```
 
-3. Ensure you have the necessary data files (`data1.xlsx`, `athlete_events.csv`) in the project directory.
+3. Ensure you have the necessary data files in the project directory.
 
 ## Usage
 
-1. **Load and Explore Data**: The script loads data from an Excel file (`data1.xlsx`) and a CSV file (`athlete_events.csv`). It then provides options to inspect the first few rows of the dataset.
+1. **Load and Explore Data**: The script loads data from an Excel file (`your_file.xlsx`) and a CSV file (`your_file.csv`). It then provides options to inspect the first few rows of the dataset.
 
 2. **ECDF Plotting**: Generate and visualize an ECDF plot of the 'Total' column from the dataset.
 
@@ -61,26 +61,7 @@ Here’s a README file for your GitHub project based on the provided code:
 To run the script, use the following command:
 
 ```bash
-python stock_analysis.py
-```
-
-## Example
-
-Here's a snippet showing how to run a simple linear regression:
-
-```python
-import stock_analysis as sa
-
-# Load data
-df = pd.read_excel('data1.xlsx')
-
-# Fit a linear regression model
-x = df['Total']
-y = df['UnitCost']
-ml_model = LinearRegression().fit(x, y)
-
-# Check the model's score
-print(ml_model.score(x, y))
+python anova_analysis.py
 ```
 
 ## Contributing
@@ -97,11 +78,3 @@ Contributions are welcome! If you'd like to contribute, please follow these step
 ## License
 
 This project is licensed under the MIT License.
-
-## Contact
-
-For any questions or feedback, please contact [your.email@example.com].
-
----
-
-You can update the contact information and any specific details according to your needs before uploading it to GitHub.
