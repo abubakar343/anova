@@ -2,7 +2,7 @@ Here’s a README file for your GitHub project based on the provided code:
 
 ---
 
-# Stock Analysis
+# Anova Analysis
 
 ## Overview
 
